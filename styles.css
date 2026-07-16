@@ -1,0 +1,252 @@
+:root {
+  --card-width: 470px;
+  --card-height: 575px;
+  --green: #214f2d;
+  --green-soft: #4e6f50;
+  --gold: #b97b35;
+  --line: #d5dec9;
+  --paper: #fbfaf4;
+  --panel: rgba(247, 247, 239, 0.94);
+  --text: #2a3029;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: #ecebe5;
+  color: var(--text);
+  font-family: "DejaVu Sans", Arial, sans-serif;
+}
+
+.page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(2, var(--card-width));
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 28px;
+}
+
+.plant-card {
+  position: relative;
+  width: var(--card-width);
+  height: var(--card-height);
+  overflow: hidden;
+  padding: 28px 26px 23px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 83% 29%, rgba(229, 235, 220, 0.74), transparent 31%),
+    linear-gradient(135deg, #fffbfb 0%, #f3e9de 100%);
+  box-shadow: 0 10px 28px rgba(49, 70, 45, 0.09);
+}
+
+.plant-watermark {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: -210px;
+  width: auto;
+  height: 82%;
+  object-fit: contain;
+  opacity: 0.08;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.plant-card__header {
+  position: relative;
+  z-index: 4;
+}
+
+.plant-card h1 {
+  max-width: 338px;
+  margin: 0;
+  color: var(--green);
+  font-family: "DejaVu Serif", Georgia, serif;
+  font-size: 29px;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.plant-card--compact h1 {
+  max-width: 318px;
+  font-size: 25px;
+  line-height: 1.12;
+}
+
+.common-name,
+.latin-name {
+  margin: 0;
+  font-family: "DejaVu Serif", Georgia, serif;
+  font-style: italic;
+}
+
+.common-name {
+  margin-top: 8px;
+  color: var(--gold);
+  font-size: 14px;
+}
+
+.latin-name {
+  margin-top: 7px;
+  color: var(--green-soft);
+  font-size: 15px;
+}
+
+.ornament {
+  width: 174px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 8px;
+  margin-top: 14px;
+  color: #c99a52;
+}
+
+.ornament span {
+  height: 1px;
+  background: #d9ad69;
+}
+
+.ornament b {
+  font-family: Georgia, serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.description {
+  position: relative;
+  z-index: 4;
+  width: 190px;
+  margin: 18px 0 0;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.plant-photo {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: -82px;
+  width: auto;
+  height: 82%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.purifies {
+  position: absolute;
+  z-index: 3;
+  left: 14px;
+  bottom: 112px;
+  width: 256px;
+  min-height: 80px;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: 11px;
+  align-items: center;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: rgba(247, 247, 239, 0.5);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(1px);
+}
+
+.purifies__icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1.5px solid var(--green);
+  border-radius: 50%;
+}
+
+.purifies svg,
+.spec svg {
+  fill: none;
+  stroke: var(--green);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.purifies__icon svg {
+  width: 23px;
+  height: 23px;
+}
+
+.purifies h2 {
+  margin: 0 0 5px;
+  color: var(--green);
+  font-size: 14px;
+  line-height: 1;
+}
+
+.purifies p {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.specs {
+  position: absolute;
+  z-index: 4;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  height: 86px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 13px;
+  background: var(--panel);
+}
+
+.spec {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 6px;
+  text-align: center;
+}
+
+.spec + .spec {
+  border-left: 1px solid var(--line);
+}
+
+.spec svg {
+  width: 22px;
+  height: 22px;
+  margin-bottom: 5px;
+}
+
+.spec strong {
+  color: var(--green);
+  font-size: 11px;
+  line-height: 1.1;
+}
+
+.spec span {
+  margin-top: 4px;
+  font-size: 9.5px;
+  line-height: 1.2;
+}
+
+@media (max-width: 520px) {
+  .page {
+    grid-template-columns: var(--card-width);
+    padding: 14px;
+    overflow-x: auto;
+  }
+}
