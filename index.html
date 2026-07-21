@@ -4,6 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Декоративни растенија — картички</title>
+  <script>
+    (() => {
+      const params = new URLSearchParams(window.location.search);
+      const exportMode = params.get("export");
+
+      if (exportMode === "mobile") {
+        document.documentElement.dataset.export = "mobile";
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -56,7 +66,7 @@
           Истражувањето „NASA Clean Air Study“ (1989) ја популаризира врската
           меѓу декоративните растенија и нивната способност да апсорбираат дел
           од овие загадувачи. Растенијата не ја заменуваат редовната вентилација,
-          но се убав и корисен дел од поздрав внатрешен простор.
+          но се убав и корисен елемент за поздрав внатрешен простор.
         </p>
       </div>
     </section>
@@ -758,5 +768,16 @@
       </div>
     </section>
   </main>
+  <script>
+    (() => {
+      const params = new URLSearchParams(window.location.search);
+
+      if (params.get("print") === "1") {
+        window.addEventListener("load", () => {
+          setTimeout(() => window.print(), 450);
+        });
+      }
+    })();
+  </script>
 </body>
 </html>
