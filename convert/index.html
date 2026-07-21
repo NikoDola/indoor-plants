@@ -85,11 +85,13 @@
   <main>
     <h1>Save Document To PDF</h1>
     <p>
-      This export is tuned for the mobile/digital presentation PDF. Your browser
-      print dialog will open; select "Save as PDF" as the destination.
+      Choose a format below. "A4 Landscape" lays out two flower cards per page on
+      wide A4 sheets; "Mobile" is the portrait/digital presentation version. Your
+      browser print dialog will open; select "Save as PDF" as the destination.
     </p>
 
     <div class="actions">
+      <button type="button" id="savePrint">Save A4 Landscape PDF</button>
       <button type="button" id="saveMobile">Save Mobile PDF</button>
       <a href="../index.html">Open Document</a>
     </div>
@@ -101,14 +103,17 @@
   </main>
 
   <script>
-    document.querySelector("#saveMobile").addEventListener("click", () => {
+    const openExport = (mode) => {
       const url = new URL("../index.html", window.location.href);
 
-      url.searchParams.set("export", "mobile");
+      url.searchParams.set("export", mode);
       url.searchParams.set("print", "1");
 
       window.open(url.toString(), "_blank", "noopener,noreferrer");
-    });
+    };
+
+    document.querySelector("#savePrint").addEventListener("click", () => openExport("print"));
+    document.querySelector("#saveMobile").addEventListener("click", () => openExport("mobile"));
   </script>
 </body>
 </html>

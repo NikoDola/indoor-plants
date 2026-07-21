@@ -9,8 +9,8 @@
       const params = new URLSearchParams(window.location.search);
       const exportMode = params.get("export");
 
-      if (exportMode === "mobile") {
-        document.documentElement.dataset.export = "mobile";
+      if (exportMode === "mobile" || exportMode === "print") {
+        document.documentElement.dataset.export = exportMode;
       }
     })();
   </script>
@@ -22,8 +22,7 @@
       <img class="sponsor-strip" src="public/assets/logos/Sponsors-03.png" alt="Логоа на спонзори" />
 
       <div class="cover-page__content">
-        <p class="eyebrow">Декоративни растенија</p>
-        <h1>10 растенија<span>моќни прочистувачи на воздухот во затворен простор</span></h1>
+        <h1>10 Декоративни Растенија<span>моќни прочистувачи на воздухот во затворен простор</span></h1>
         <div class="cover-ornament" aria-hidden="true">
           <span></span><b>❦</b><span></span>
         </div>
@@ -33,7 +32,7 @@
           училницата или канцеларијата.
         </p>
 
-        <div class="cover-grid" aria-hidden="true">
+        <!-- <div class="cover-grid" aria-hidden="true">
           <div><img src="spider-plant.png" alt="" /></div>
           <div><img src="peace-lily.png" alt="" /></div>
           <div><img src="snake-plant.png" alt="" /></div>
@@ -44,13 +43,12 @@
           <div><img src="dracaena.png" alt="" /></div>
           <div><img src="boston-fern.png" alt="" /></div>
           <div><img src="aloe-vera.png" alt="" /></div>
-        </div>
+        </div> -->
       </div>
     </section>
 
     <section class="book-page intro-page">
       <div class="intro-page__content">
-        <p class="eyebrow">Вовед</p>
         <h1>Декоративните растенија и квалитетот на воздухот во затворен простор</h1>
         <p>
           Собните растенија секогаш се вредни придружници во домот, училницата
@@ -71,6 +69,7 @@
       </div>
     </section>
 
+    <section class="book-page flower-sheet">
     <article class="plant-card">
       <img class="plant-watermark" src="spider-plant.png" alt="" aria-hidden="true" />
 
@@ -84,8 +83,11 @@
       </header>
 
       <p class="description">
-        Издржливо растение со тесни зелено-бели листови.
-        Одлично за почетници и висечки саксии.
+        Едно од најиздржливите и најраспространети собни растенија. Има тенки,
+        извиени, лентовидни листови, најчесто со бело-зелени продолжни пруги.
+        Со времето развива долги „разноси“ на кои никнуваат мали
+        ластарчиња-„бебиња“, што му дава декоративен, водопадест изглед во
+        висечка саксија.
       </p>
 
       <img
@@ -158,8 +160,10 @@
       </header>
 
       <p class="description">
-        Тропско растение со сјајни темнозелени листови и препознатлив бел цвет.
-        Добро се снаоѓа и во потемни простории.
+        Тропско растение со сјајни, темнозелени, ланцетести листови и
+        препознатлив бел цвет во облик на „едро“ (спата), кој се издига над
+        лисната маса. Едно од најсестраните растенија во однос на прочистување
+        на воздухот.
       </p>
 
       <img
@@ -218,7 +222,9 @@
         </div>
       </section>
     </article>
+    </section>
 
+    <section class="book-page flower-sheet">
     <article class="plant-card plant-card--compact">
       <img class="plant-watermark" src="snake-plant.png" alt="" aria-hidden="true" />
 
@@ -232,8 +238,10 @@
       </header>
 
       <p class="description">
-        Круто растение со месести мечовидни листови и мермерна шара.
-        Исклучително издржливо и речиси неуништливо.
+        Круто, исправено растение со месести, мечовидни листови со мермерна шара
+        во темно и светлозелено. Во 2017 г. ботанички е префрлено од родот
+        Sansevieria во родот Dracaena, иако поранешното име сè уште преовладува
+        во трговијата.
       </p>
 
       <img class="plant-photo" src="snake-plant.png" alt="Свекрвин јазик во светла саксија" />
@@ -299,8 +307,9 @@
       </header>
 
       <p class="description">
-        Брзорастечка лоза со срцевидни листови и жолто-зелена шара.
-        Одлична за висечки саксии или потпора со мов.
+        Брзорастечка увиткана лоза со срцевидни листови со жолто-зелена мермерна
+        шара. Одлична за висечки саксии или за качување по потпора обвиена со
+        мов.
       </p>
 
       <img class="plant-photo" src="pothos.png" alt="Потос во светла саксија" />
@@ -352,7 +361,9 @@
         </div>
       </section>
     </article>
+    </section>
 
+    <section class="book-page flower-sheet">
     <article class="plant-card">
       <img class="plant-watermark" src="english-ivy.png" alt="" aria-hidden="true" />
 
@@ -366,8 +377,9 @@
       </header>
 
       <p class="description">
-        Класична увиткана лоза со лапести темнозелени листови.
-        Се истакнува и по намалување мувла и алергени.
+        Класична увиткана лоза со лапести, ѕвездовидни темнозелени листови. Во
+        истражувањата за квалитет на воздух се истакна и по намалувањето на
+        честички мувла и алергени во воздухот, не само хемиски загадувачи.
       </p>
 
       <img class="plant-photo" src="english-ivy.png" alt="Бршлен во светла саксија" />
@@ -433,8 +445,9 @@
       </header>
 
       <p class="description">
-        Елегантна мала палма со тенки стебла и перести лисја.
-        Одлична како природен овлажнувач во просторијата.
+        Елегантна мала палма со тенки, трскасти стебла и перести лисја. Едно од
+        најефикасните растенија во улога на природен овлажнувач на воздухот во
+        просторијата.
       </p>
 
       <img class="plant-photo" src="bamboo-palm.png" alt="Бамбусова палма во светла саксија" />
@@ -486,7 +499,9 @@
         </div>
       </section>
     </article>
+    </section>
 
+    <section class="book-page flower-sheet">
     <article class="plant-card">
       <img class="plant-watermark" src="rubber-plant.png" alt="" aria-hidden="true" />
 
@@ -500,8 +515,9 @@
       </header>
 
       <p class="description">
-        Растение со големи сјајни кожести листови на исправено стебло.
-        Со време станува силна декоративна точка.
+        Растение со големи, сјајни, кожести овални листови на исправено стебло.
+        Со текот на годините може да прерасне во вистинско мало дрво и да стане
+        централна декоративна точка во просторијата.
       </p>
 
       <img class="plant-photo" src="rubber-plant.png" alt="Гумено дрво во светла саксија" />
@@ -567,8 +583,8 @@
       </header>
 
       <p class="description">
-        Архитектонско растение со тенки мечовидни листови и црвеникави рабови.
-        Сноповите растат од дрвенести стебла.
+        Архитектонско растение со тенки, мечовидни листови со црвеникаво-виолетови
+        рабови, кои извираат во снопови од врвовите на дрвенести стебла.
       </p>
 
       <img class="plant-photo" src="dracaena.png" alt="Дракена во светла саксија" />
@@ -620,7 +636,9 @@
         </div>
       </section>
     </article>
+    </section>
 
+    <section class="book-page flower-sheet">
     <article class="plant-card">
       <img class="plant-watermark" src="boston-fern.png" alt="" aria-hidden="true" />
 
@@ -634,8 +652,10 @@
       </header>
 
       <p class="description">
-        Бујна папрат со фини перести листови во густа водопадеста капа.
-        Одлична за прочистување и овлажнување.
+        Бујна папрат со фини, перести, извиени листови кои формираат густа,
+        водопадеста „капа“. Во класичните истражувања за квалитет на воздух се
+        истакна како едно од најдобрите растенија и за прочистување и за
+        природно овлажнување на воздухот.
       </p>
 
       <img class="plant-photo" src="boston-fern.png" alt="Бостонска папрат во светла саксија" />
@@ -701,8 +721,9 @@
       </header>
 
       <p class="description">
-        Сукулент со дебели сиво-зелени листови подредени во розета.
-        Познат по гелот што се користи за нега на кожа.
+        Сукулентно растение со дебели, месести, сиво-зелени листови подредени во
+        розета, добро познато по гелот што се користи за нега на кожа и
+        изгореници.
       </p>
 
       <img class="plant-photo" src="aloe-vera.png" alt="Алоа Вера во светла саксија" />
@@ -754,11 +775,12 @@
         </div>
       </section>
     </article>
+    </section>
+
     <section class="book-page closing-page">
       <img class="sponsor-strip" src="public/assets/logos/Sponsors-03.png" alt="Логоа на спонзори" />
 
       <div class="closing-page__content">
-        <p class="eyebrow">Крај</p>
         <h1>Растенијата се мал чекор кон посвеж простор</h1>
         <p>
           Изберете растение според светлината, влажноста и безбедноста во вашиот
@@ -771,6 +793,16 @@
   <script>
     (() => {
       const params = new URLSearchParams(window.location.search);
+      const mode = document.documentElement.dataset.export;
+
+      // @page size can't be scoped by attribute selector, so pick it here.
+      // Appended after the stylesheet, this rule wins the cascade.
+      if (mode === "print" || mode === "mobile") {
+        const size = mode === "print" ? "A4 landscape" : "A4 portrait";
+        const style = document.createElement("style");
+        style.textContent = "@media print { @page { size: " + size + "; margin: 0; } }";
+        document.head.appendChild(style);
+      }
 
       if (params.get("print") === "1") {
         window.addEventListener("load", () => {

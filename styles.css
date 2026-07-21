@@ -1,6 +1,7 @@
 :root {
   --card-width: 470px;
-  --card-height: 575px;
+  --card-height: 666px;
+  --sheet-width: 1038px; /* on-screen A4-landscape "sheet"; height set via aspect-ratio */
   --green: #214f2d;
   --green-soft: #4e6f50;
   --gold: #b97b35;
@@ -24,19 +25,18 @@ body {
 
 .page {
   min-height: 100vh;
-  display: grid;
-  grid-template-columns: repeat(2, var(--card-width));
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 28px;
   padding: 28px;
 }
 
 .book-page {
   position: relative;
-  grid-column: 1 / -1;
-  width: calc((var(--card-width) * 2) + 28px);
-  min-height: var(--card-height);
+  width: var(--sheet-width);
+  aspect-ratio: 297 / 210;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 18px;
@@ -44,6 +44,18 @@ body {
     radial-gradient(circle at 84% 68%, rgba(213, 222, 201, 0.62), transparent 32%),
     linear-gradient(135deg, #ffffff 0%, #fff9f2 100%);
   box-shadow: 0 10px 28px rgba(49, 70, 45, 0.09);
+}
+
+/* A white A4-landscape sheet that holds two flower cards side by side */
+.flower-sheet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 34px;
+  background:
+    radial-gradient(circle at 50% 120%, rgba(213, 222, 201, 0.28), transparent 46%),
+    linear-gradient(135deg, #ffffff 0%, #fffaf4 100%);
 }
 
 .cover-page::before,
@@ -97,7 +109,7 @@ body {
 }
 
 .cover-page__content {
-  min-height: var(--card-height);
+  min-height: 100%;
   max-width: none;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
@@ -251,11 +263,11 @@ body {
   overflow: hidden;
   padding: 28px 26px 23px;
   border: 1px solid var(--line);
-  border-radius: 18px;
+  border-radius: 14px;
   background:
     radial-gradient(circle at 83% 29%, rgba(229, 235, 220, 0.74), transparent 31%),
     linear-gradient(135deg, #fffbfb 0%, #f3e9de 100%);
-  box-shadow: 0 10px 28px rgba(49, 70, 45, 0.09);
+  box-shadow: 0 2px 8px rgba(49, 70, 45, 0.06);
 }
 
 .plant-watermark {
@@ -335,10 +347,16 @@ body {
 .description {
   position: relative;
   z-index: 4;
-  width: 190px;
-  margin: 18px 0 0;
-  font-size: 13px;
-  line-height: 1.55;
+  width: 232px;
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(213, 222, 201, 0.7);
+  border-radius: 12px;
+  background: rgba(251, 250, 244, 0.74);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 .plant-photo {
@@ -457,13 +475,20 @@ body {
 
 @media (max-width: 520px) {
   .page {
-    grid-template-columns: var(--card-width);
     padding: 14px;
     overflow-x: auto;
   }
 
   .book-page {
     width: var(--card-width);
+    aspect-ratio: auto;
+    min-height: var(--card-height);
+  }
+
+  .flower-sheet {
+    flex-direction: column;
+    gap: 14px;
+    padding: 14px;
   }
 
   .sponsor-strip {
@@ -554,6 +579,14 @@ html[data-export="mobile"] .page {
 
 html[data-export="mobile"] .book-page {
   width: var(--card-width);
+  aspect-ratio: auto;
+  min-height: var(--card-height);
+}
+
+html[data-export="mobile"] .flower-sheet {
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px;
 }
 
 html[data-export="mobile"] .sponsor-strip {
@@ -748,19 +781,23 @@ html[data-export="mobile"] .spec span {
     font-size: 58px;
   }
 
+  html[data-export="mobile"] .flower-sheet {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 6mm;
+    padding: 8mm 5mm;
+  }
+
   html[data-export="mobile"] .plant-card {
-    width: 200mm;
-    height: 136mm;
-    margin: 5mm auto;
+    width: 190mm;
+    height: 130mm;
+    margin: 0;
     border-radius: 8mm;
     box-shadow: none;
     break-inside: avoid;
     page-break-inside: avoid;
-  }
-
-  html[data-export="mobile"] .plant-card:nth-of-type(2n) {
-    break-after: page;
-    page-break-after: always;
   }
 
   html[data-export="mobile"] .plant-card h1 {
@@ -786,5 +823,171 @@ html[data-export="mobile"] .spec span {
   html[data-export="mobile"] .specs {
     bottom: 4mm;
     height: 20mm;
+  }
+
+  /* ============================================================
+     A4 LANDSCAPE export — two flower cards side by side per page
+     ============================================================ */
+  html[data-export="print"],
+  html[data-export="print"] body {
+    width: 297mm;
+    min-height: 0;
+    background: #ffffff;
+  }
+
+  html[data-export="print"] .page {
+    width: 297mm;
+    min-height: auto;
+    display: block;
+    padding: 0;
+    gap: 0;
+    background: #ffffff;
+  }
+
+  /* Cover / intro / closing: one full A4 landscape page each */
+  html[data-export="print"] .book-page {
+    display: block;
+    clear: both;
+    width: 297mm;
+    height: 210mm;
+    min-height: 0;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    break-after: page;
+    page-break-after: always;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  html[data-export="print"] .sponsor-strip {
+    top: 9mm;
+    left: 16mm;
+    right: 16mm;
+    width: calc(100% - 32mm);
+    height: 17mm;
+  }
+
+  html[data-export="print"] .cover-page__content,
+  html[data-export="print"] .intro-page__content,
+  html[data-export="print"] .closing-page__content {
+    min-height: 100%;
+    padding: 30mm 22mm 18mm;
+  }
+
+  html[data-export="print"] .cover-page__content {
+    column-gap: 30mm;
+  }
+
+  html[data-export="print"] .cover-page h1 {
+    font-size: 64px;
+  }
+
+  html[data-export="print"] .cover-page h1 span {
+    font-size: 30px;
+  }
+
+  html[data-export="print"] .intro-page h1,
+  html[data-export="print"] .closing-page h1 {
+    font-size: 44px;
+  }
+
+  html[data-export="print"] .cover-page p:not(.eyebrow),
+  html[data-export="print"] .intro-page p:not(.eyebrow),
+  html[data-export="print"] .closing-page p:not(.eyebrow) {
+    font-size: 18px;
+  }
+
+  html[data-export="print"] .eyebrow {
+    font-size: 18px;
+  }
+
+  /* Flower sheet = one landscape page holding two cards side by side */
+  html[data-export="print"] .flower-sheet {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8mm;
+    padding: 10mm;
+  }
+
+  html[data-export="print"] .plant-card {
+    width: 134mm;
+    height: 190mm;
+    margin: 0;
+    border-radius: 7mm;
+    box-shadow: none;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  html[data-export="print"] .plant-card h1 {
+    max-width: 88mm;
+    font-size: 32px;
+  }
+
+  html[data-export="print"] .plant-card--compact h1 {
+    font-size: 28px;
+  }
+
+  html[data-export="print"] .common-name {
+    font-size: 15px;
+  }
+
+  html[data-export="print"] .latin-name {
+    font-size: 16px;
+  }
+
+  html[data-export="print"] .description {
+    width: 68mm;
+    margin-top: 6mm;
+    padding: 4mm 4.5mm;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  html[data-export="print"] .plant-photo {
+    right: -26mm;
+    height: 76%;
+  }
+
+  html[data-export="print"] .purifies {
+    left: 6mm;
+    bottom: 34mm;
+    width: 72mm;
+    padding: 4mm 4mm;
+  }
+
+  html[data-export="print"] .purifies h2 {
+    font-size: 15px;
+  }
+
+  html[data-export="print"] .purifies p {
+    font-size: 12px;
+  }
+
+  html[data-export="print"] .specs {
+    left: 6mm;
+    right: 6mm;
+    bottom: 6mm;
+    height: 26mm;
+  }
+
+  html[data-export="print"] .spec strong {
+    font-size: 12px;
+  }
+
+  html[data-export="print"] .spec span {
+    font-size: 10.5px;
+  }
+
+  html[data-export="print"] .spec svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  html[data-export="print"] .closing-page {
+    clear: both;
   }
 }

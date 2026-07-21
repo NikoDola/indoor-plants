@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(which pdftoppm *)",
+      "Read(//c/Program Files/gs/**)",
+      "Bash(cd \"c:/Users/Dolov/OneDrive/Desktop/Junk code/plant-card-demo\" && rm -f _v_*.png _v_*.pdf && echo \"cleaned\" && git status --short)"
+    ],
+    "additionalDirectories": [
+      "C:\\Users\\Dolov\\OneDrive\\Desktop\\Junk code\\plant-card-demo"
+    ]
+  }
+}
