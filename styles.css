@@ -58,7 +58,6 @@ body {
     linear-gradient(135deg, #ffffff 0%, #fffaf4 100%);
 }
 
-.intro-page::before,
 .closing-page::before {
   content: "";
   position: absolute;
@@ -116,6 +115,21 @@ body {
   pointer-events: none;
 }
 
+.intro-page {
+  background: #ffffff;
+}
+
+.intro-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+}
+
 .sponsor-strip {
   position: absolute;
   z-index: 5;
@@ -148,7 +162,7 @@ body {
   min-height: 100%;
   max-width: none;
   display: grid;
-  grid-template-columns: minmax(0, 430px) 1fr;
+  grid-template-columns: minmax(0, 470px) 1fr;
   grid-template-rows: auto auto auto auto;
   column-gap: 36px;
   align-content: center;
@@ -163,6 +177,20 @@ body {
   justify-content: center;
   padding-top: 54px;
   padding-bottom: 54px;
+}
+
+.intro-copy {
+  width: min(780px, 100%);
+  padding: 24px 28px 28px;
+  border: 1px solid rgba(213, 222, 201, 0.7);
+  border-radius: 12px;
+  background: rgba(251, 250, 244, 0.74);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+}
+
+.intro-copy h1 {
+  margin-top: 0;
 }
 
 .closing-page__content {
@@ -204,28 +232,28 @@ body {
 
 .cover-page h1 {
   justify-self: start;
-  max-width: 410px;
+  max-width: 450px;
   margin-top: 0;
-  font-size: 44px;
-  line-height: 1.25;
+  font-size: 48px;
+  line-height: 1.5;
 }
 
 .cover-page h1 span {
   display: block;
   margin-top: 12px;
   color: var(--green-soft);
-  font-size: 21px;
+  font-size: 25px;
   line-height: 1.18;
 }
 
 .cover-ornament {
   justify-self: start;
-  width: 238px;
+  width: 88%;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 12px;
-  margin: 20px 0 0;
+  margin: 2.2rem 0 0;
   color: #c99a52;
 }
 
@@ -247,6 +275,10 @@ body {
   line-height: 1.08;
 }
 
+.intro-page h1 {
+  font-size: 34px;
+}
+
 .cover-page p:not(.eyebrow),
 .intro-page p:not(.eyebrow),
 .closing-page p:not(.eyebrow) {
@@ -255,6 +287,10 @@ body {
   color: #31362f;
   font-size: 15px;
   line-height: 1.65;
+}
+
+.intro-page p:not(.eyebrow) {
+  font-size: 16.5px;
 }
 
 .cover-grid {
@@ -388,7 +424,7 @@ body {
 .description {
   position: relative;
   z-index: 4;
-  width: 232px;
+  width: 210px;
   margin: 14px 0 0;
   padding: 12px 14px;
   border: 1px solid rgba(213, 222, 201, 0.7);
@@ -396,7 +432,7 @@ body {
   background: rgba(251, 250, 244, 0.74);
   -webkit-backdrop-filter: blur(2px);
   backdrop-filter: blur(2px);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -561,7 +597,7 @@ body {
   }
 
   .cover-page h1 {
-    font-size: 32px;
+    font-size: 36px;
   }
 
   .intro-page h1,
@@ -569,12 +605,20 @@ body {
     font-size: 23px;
   }
 
+  .intro-page h1 {
+    font-size: 21px;
+  }
+
+  .intro-page p:not(.eyebrow) {
+    font-size: 17px;
+  }
+
   .cover-page h1 span {
-    font-size: 18px;
+    font-size: 25px;
   }
 
   .cover-ornament {
-    width: 210px;
+    width: 88%;
     margin-left: 0;
     margin-right: 0;
   }
@@ -667,7 +711,7 @@ html[data-export="mobile"] .cover-page__content {
 }
 
 html[data-export="mobile"] .cover-page h1 {
-  font-size: 32px;
+  font-size: 36px;
 }
 
 html[data-export="mobile"] .intro-page h1,
@@ -675,12 +719,20 @@ html[data-export="mobile"] .closing-page h1 {
   font-size: 23px;
 }
 
+html[data-export="mobile"] .intro-page h1 {
+  font-size: 21px;
+}
+
+html[data-export="mobile"] .intro-page p:not(.eyebrow) {
+  font-size: 17px;
+}
+
 html[data-export="mobile"] .cover-page h1 span {
-  font-size: 18px;
+  font-size: 25px;
 }
 
 html[data-export="mobile"] .cover-ornament {
-  width: 210px;
+  width: 88%;
   margin-left: 0;
   margin-right: 0;
 }
@@ -799,11 +851,11 @@ html[data-export="mobile"] .spec span {
 
   html[data-export="mobile"] .cover-page h1 {
     max-width: 168mm;
-    font-size: 64px;
+    font-size: 72px;
   }
 
   html[data-export="mobile"] .cover-page h1 span {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   html[data-export="mobile"] .cover-page p:not(.eyebrow),
@@ -813,12 +865,16 @@ html[data-export="mobile"] .spec span {
     font-size: 23px;
   }
 
+  html[data-export="mobile"] .intro-page p:not(.eyebrow) {
+    font-size: 25px;
+  }
+
   html[data-export="mobile"] .eyebrow {
     font-size: 24px;
   }
 
   html[data-export="mobile"] .cover-ornament {
-    width: 104mm;
+    width: 88%;
     margin-left: 0;
     margin-right: 0;
   }
@@ -841,6 +897,10 @@ html[data-export="mobile"] .spec span {
   html[data-export="mobile"] .closing-page h1 {
     max-width: 178mm;
     font-size: 58px;
+  }
+
+  html[data-export="mobile"] .intro-page h1 {
+    font-size: 50px;
   }
 
   html[data-export="mobile"] .flower-sheet {
@@ -947,11 +1007,11 @@ html[data-export="mobile"] .spec span {
   }
 
   html[data-export="print"] .cover-page h1 {
-    font-size: 52px;
+    font-size: 58px;
   }
 
   html[data-export="print"] .cover-page h1 span {
-    font-size: 25px;
+    font-size: 26px;
   }
 
   html[data-export="print"] .intro-page h1,
@@ -959,10 +1019,18 @@ html[data-export="mobile"] .spec span {
     font-size: 44px;
   }
 
+  html[data-export="print"] .intro-page h1 {
+    font-size: 38px;
+  }
+
   html[data-export="print"] .cover-page p:not(.eyebrow),
   html[data-export="print"] .intro-page p:not(.eyebrow),
   html[data-export="print"] .closing-page p:not(.eyebrow) {
     font-size: 18px;
+  }
+
+  html[data-export="print"] .intro-page p:not(.eyebrow) {
+    font-size: 20px;
   }
 
   html[data-export="print"] .eyebrow {
@@ -1056,4 +1124,16 @@ html[data-export="mobile"] .spec span {
   html[data-export="print"] .closing-page {
     clear: both;
   }
+}
+
+#drakena{
+  width: 180px;
+}
+
+#fikus{
+  width: 180px;
+}
+
+#aloa-vera{
+  width: 180px;
 }
