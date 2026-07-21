@@ -153,6 +153,7 @@ body {
 .cover-page__content,
 .intro-page__content,
 .closing-page__content {
+
   position: relative;
   z-index: 2;
   padding: 108px 74px 54px;
@@ -291,6 +292,151 @@ body {
 
 .intro-page p:not(.eyebrow) {
   font-size: 16.5px;
+}
+
+.overview-page {
+  background:
+    radial-gradient(circle at 86% 22%, rgba(213, 222, 201, 0.54), transparent 30%),
+    radial-gradient(circle at 12% 88%, rgba(185, 123, 53, 0.08), transparent 35%),
+    linear-gradient(135deg, #ffffff 0%, #fffaf4 100%);
+}
+
+.overview-page::before {
+  content: "";
+  position: absolute;
+  right: -170px;
+  bottom: -185px;
+  z-index: 1;
+  width: 560px;
+  height: 560px;
+  background: url("public/assets/background/flower-01.svg") center / contain no-repeat;
+  opacity: 0.11;
+  pointer-events: none;
+}
+
+.overview-page__content {
+  position: relative;
+  z-index: 2;
+  min-height: 100%;
+  padding: 50px 66px 36px;
+}
+
+.overview-page h1 {
+  max-width: 720px;
+  margin: 0;
+  color: var(--green);
+  font-family: "DejaVu Serif", Georgia, serif;
+  font-size: 38px;
+  line-height: 1.08;
+  letter-spacing: 0;
+}
+
+.overview-page .cover-ornament {
+  width: 330px;
+  margin: 14px 0 18px;
+}
+
+.overview-table {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  background: rgba(251, 250, 244, 0.88);
+  table-layout: fixed;
+}
+
+.overview-table th,
+.overview-table td {
+  padding: 9px 11px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  color: #2f352e;
+  font-size: 13.4px;
+  line-height: 1.2;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.overview-table thead th {
+  background: var(--green-soft);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.overview-table tbody th {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.overview-table tbody tr:nth-child(even) {
+  background: rgba(229, 235, 220, 0.46);
+}
+
+.overview-table th:last-child,
+.overview-table td:last-child {
+  border-right: 0;
+}
+
+.overview-table tbody tr:last-child th,
+.overview-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.overview-table thead th:nth-child(1),
+.overview-table tbody th {
+  width: 31%;
+}
+
+.overview-table thead th:nth-child(2),
+.overview-table tbody td:nth-child(2) {
+  width: 31%;
+}
+
+.overview-table thead th:nth-child(3),
+.overview-table tbody td:nth-child(3) {
+  width: 18%;
+}
+
+.overview-table thead th:nth-child(4),
+.overview-table tbody td:nth-child(4) {
+  width: 20%;
+}
+
+.safety {
+  font-weight: 700;
+}
+
+.safety--safe {
+  color: var(--green);
+}
+
+.safety--mild {
+  color: #936622;
+}
+
+.safety--toxic {
+  color: #9f3029;
+}
+
+.overview-source {
+  position: relative;
+  z-index: 2;
+  max-width: 880px;
+  margin: 18px 0 0;
+  color: #31362f;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.overview-source strong {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--green);
 }
 
 .cover-grid {
@@ -613,6 +759,56 @@ body {
     font-size: 17px;
   }
 
+  .overview-page__content {
+    padding: 42px 20px 24px;
+  }
+
+  .overview-page h1 {
+    font-size: 24px;
+  }
+
+  .overview-page .cover-ornament {
+    width: 220px;
+    margin: 11px 0 14px;
+  }
+
+  .overview-table th,
+  .overview-table td {
+    padding: 7px 6px;
+    font-size: 10.5px;
+    line-height: 1.18;
+  }
+
+  .overview-table thead th {
+    font-size: 10.8px;
+  }
+
+  .overview-table thead th:nth-child(1),
+  .overview-table tbody th {
+    width: 30%;
+  }
+
+  .overview-table thead th:nth-child(2),
+  .overview-table tbody td:nth-child(2) {
+    width: 29%;
+  }
+
+  .overview-table thead th:nth-child(3),
+  .overview-table tbody td:nth-child(3) {
+    width: 20%;
+  }
+
+  .overview-table thead th:nth-child(4),
+  .overview-table tbody td:nth-child(4) {
+    width: 21%;
+  }
+
+  .overview-source {
+    margin-top: 13px;
+    font-size: 11.5px;
+    line-height: 1.38;
+  }
+
   .cover-page h1 span {
     font-size: 25px;
   }
@@ -725,6 +921,56 @@ html[data-export="mobile"] .intro-page h1 {
 
 html[data-export="mobile"] .intro-page p:not(.eyebrow) {
   font-size: 17px;
+}
+
+html[data-export="mobile"] .overview-page__content {
+  padding: 42px 20px 24px;
+}
+
+html[data-export="mobile"] .overview-page h1 {
+  font-size: 24px;
+}
+
+html[data-export="mobile"] .overview-page .cover-ornament {
+  width: 220px;
+  margin: 11px 0 14px;
+}
+
+html[data-export="mobile"] .overview-table th,
+html[data-export="mobile"] .overview-table td {
+  padding: 7px 6px;
+  font-size: 10.5px;
+  line-height: 1.18;
+}
+
+html[data-export="mobile"] .overview-table thead th {
+  font-size: 10.8px;
+}
+
+html[data-export="mobile"] .overview-table thead th:nth-child(1),
+html[data-export="mobile"] .overview-table tbody th {
+  width: 30%;
+}
+
+html[data-export="mobile"] .overview-table thead th:nth-child(2),
+html[data-export="mobile"] .overview-table tbody td:nth-child(2) {
+  width: 29%;
+}
+
+html[data-export="mobile"] .overview-table thead th:nth-child(3),
+html[data-export="mobile"] .overview-table tbody td:nth-child(3) {
+  width: 20%;
+}
+
+html[data-export="mobile"] .overview-table thead th:nth-child(4),
+html[data-export="mobile"] .overview-table tbody td:nth-child(4) {
+  width: 21%;
+}
+
+html[data-export="mobile"] .overview-source {
+  margin-top: 13px;
+  font-size: 11.5px;
+  line-height: 1.38;
 }
 
 html[data-export="mobile"] .cover-page h1 span {
@@ -903,6 +1149,39 @@ html[data-export="mobile"] .spec span {
     font-size: 50px;
   }
 
+  html[data-export="mobile"] .overview-page__content {
+    min-height: 100%;
+    padding: 18mm 10mm 12mm;
+  }
+
+  html[data-export="mobile"] .overview-page h1 {
+    max-width: 180mm;
+    font-size: 35px;
+  }
+
+  html[data-export="mobile"] .overview-page .cover-ornament {
+    width: 108mm;
+    margin: 5mm 0 6mm;
+  }
+
+  html[data-export="mobile"] .overview-table th,
+  html[data-export="mobile"] .overview-table td {
+    padding: 2.7mm 2mm;
+    font-size: 13px;
+    line-height: 1.17;
+  }
+
+  html[data-export="mobile"] .overview-table thead th {
+    font-size: 13.5px;
+  }
+
+  html[data-export="mobile"] .overview-source {
+    max-width: 180mm;
+    margin-top: 6mm;
+    font-size: 15px;
+    line-height: 1.35;
+  }
+
   html[data-export="mobile"] .flower-sheet {
     display: flex;
     flex-direction: column;
@@ -1021,6 +1300,39 @@ html[data-export="mobile"] .spec span {
 
   html[data-export="print"] .intro-page h1 {
     font-size: 38px;
+  }
+
+  html[data-export="print"] .overview-page__content {
+    min-height: 100%;
+    padding: 17mm 18mm 12mm;
+  }
+
+  html[data-export="print"] .overview-page h1 {
+    max-width: 240mm;
+    font-size: 38px;
+  }
+
+  html[data-export="print"] .overview-page .cover-ornament {
+    width: 95mm;
+    margin: 4mm 0 5mm;
+  }
+
+  html[data-export="print"] .overview-table th,
+  html[data-export="print"] .overview-table td {
+    padding: 2.5mm 3mm;
+    font-size: 14px;
+    line-height: 1.18;
+  }
+
+  html[data-export="print"] .overview-table thead th {
+    font-size: 15px;
+  }
+
+  html[data-export="print"] .overview-source {
+    max-width: 248mm;
+    margin-top: 5mm;
+    font-size: 13.5px;
+    line-height: 1.35;
   }
 
   html[data-export="print"] .cover-page p:not(.eyebrow),
