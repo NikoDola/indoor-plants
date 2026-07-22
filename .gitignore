@@ -1,0 +1,20 @@
+# Generated exports
+*.pdf
+
+# Design sources
+*.ai
+
+# Tooling / browser automation profiles
+.chrome-pdf-profile/
+.chrome-shot-profile/
+.chrome-*profile/
+.agents/
+.claude/
+
+# Dependencies
+node_modules/
+
+# OS cruft
+.DS_Store
+Thumbs.db
+desktop.ini
