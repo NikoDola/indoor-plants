@@ -83,32 +83,42 @@
 </head>
 <body>
   <main>
-    <h1>Export Wide PDF</h1>
+    <h1>Export PDF</h1>
     <p>
-      This opens the document as wide A4 artboards. Each main page is exported as
-      one PDF page, keeping the same 297 x 210 mm dimensions and square outer corners.
+      Each page is exported as one A4 artboard (297 &times; 210 mm). Choose
+      <strong>Digital</strong> for a lightweight file to view on screen or send by
+      email (WebP images, a few MB), or <strong>Print</strong> for full-quality
+      images meant for physical printing (PNG images, larger file).
     </p>
 
     <div class="actions">
-      <button type="button" id="savePdf">Open PDF Export</button>
-      <a href="../index.html">Open Document</a>
-      <a href="../convert/">Old Converter</a>
+      <button type="button" data-export="pdf" data-quality="digital">Digital PDF &middot; A4 landscape</button>
+      <button type="button" data-export="pdf" data-quality="print">Print PDF &middot; A4 landscape</button>
+      <button type="button" data-export="mobile" data-quality="digital">Digital PDF &middot; Mobile portrait</button>
+      <a href="../index.html">Open document</a>
     </div>
 
     <p class="note">
-      In the print dialog choose Save as PDF, disable headers and footers, keep scale
-      at 100%, and enable background graphics/colors.
+      In the print dialog choose <em>Save as PDF</em>, disable headers and footers,
+      keep scale at 100%, and enable background graphics/colors.
     </p>
   </main>
 
   <script>
-    document.querySelector("#savePdf").addEventListener("click", () => {
+    const openExport = (mode, quality) => {
       const url = new URL("../index.html", window.location.href);
 
-      url.searchParams.set("export", "pdf");
+      url.searchParams.set("export", mode);
+      url.searchParams.set("quality", quality);
       url.searchParams.set("print", "1");
 
       window.open(url.toString(), "_blank", "noopener,noreferrer");
+    };
+
+    document.querySelectorAll(".actions button").forEach((button) => {
+      button.addEventListener("click", () => {
+        openExport(button.dataset.export, button.dataset.quality);
+      });
     });
   </script>
 </body>

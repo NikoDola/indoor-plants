@@ -8,9 +8,16 @@
     (() => {
       const params = new URLSearchParams(window.location.search);
       const exportMode = params.get("export");
+      const quality = params.get("quality");
 
       if (exportMode === "mobile" || exportMode === "print" || exportMode === "pdf") {
         document.documentElement.dataset.export = exportMode;
+      }
+
+      // "digital" = lightweight WebP images (small PDF for screen/email sharing);
+      // "print" = full-quality PNGs. Set early so CSS backgrounds pick the right source.
+      if (quality === "digital" || quality === "print") {
+        document.documentElement.dataset.quality = quality;
       }
     })();
   </script>
@@ -983,6 +990,16 @@
         const style = document.createElement("style");
         style.textContent = "@media print { @page { size: " + size + "; margin: 0; } }";
         document.head.appendChild(style);
+      }
+
+      // For a "digital" export, swap the content images to WebP so the exported
+      // PDF stays small. (Print quality keeps the PNGs via each <picture>'s
+      // media="print" source, so no change is needed there.)
+      if (document.documentElement.dataset.quality === "digital") {
+        document.querySelectorAll('picture source[media="print"]').forEach((s) => s.remove());
+        document.querySelectorAll("picture > img").forEach((img) => {
+          img.src = img.getAttribute("src").replace(/\.png(\?.*)?$/, ".webp$1");
+        });
       }
 
       if (params.get("print") === "1") {

@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
-"""Generate WebP variants of every PNG under assets/.
+"""Generate lightweight WebP variants of every PNG under assets/.
 
-The WebP files are served to browsers for on-screen viewing; the original PNGs
-are kept as the print / fallback source (see the <picture> elements in
-index.html and the image-set() rules in styles.css).
+Each asset ships in two tiers:
 
-Run from the repo root:
+  * PNG  — the original, full-resolution source. Used for on-screen fallback and
+           for the *print* PDF export, where full fidelity matters.
+  * WebP — a smaller, down-scaled copy. Used for on-screen viewing and for the
+           *digital* PDF export, where a light file matters more than print DPI.
+
+The PNGs are never modified. Re-run this whenever a PNG changes:
 
     python scripts/optimize-images.py
 
@@ -17,7 +20,25 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parent.parent
 ASSETS = ROOT / "assets"
-QUALITY = 82  # visually lossless for these photos, ~3-5x smaller than PNG
+QUALITY = 74
+
+# Max longest-side (px) for the WebP copy, by top-level assets/ sub-folder.
+# The PNG keeps full resolution for print; these caps only shrink the WebP.
+# Kept modest on purpose: the WebP feeds the web view and the *digital* PDF,
+# where a light file matters more than print DPI (the plants render small on
+# the cards, so 700px still looks crisp on screen).
+CAPS = {
+    "plants": 700,
+    "cover": 1500,
+    "logos": 2000,
+    "background": 1500,
+}
+DEFAULT_CAP = 1400
+
+
+def cap_for(png: Path) -> int:
+    top = png.relative_to(ASSETS).parts[0]
+    return CAPS.get(top, DEFAULT_CAP)
 
 
 def main() -> None:
@@ -28,9 +49,18 @@ def main() -> None:
 
     total_png = total_webp = 0
     for png in pngs:
-        webp = png.with_suffix(".webp")
+        cap = cap_for(png)
         with Image.open(png) as im:
-            im.save(webp, "WEBP", quality=QUALITY, method=6)
+            longest = max(im.size)
+            if longest > cap:
+                scale = cap / longest
+                im = im.resize(
+                    (round(im.width * scale), round(im.height * scale)),
+                    Image.LANCZOS,
+                )
+            im.save(png.with_suffix(".webp"), "WEBP", quality=QUALITY, method=6)
+
+        webp = png.with_suffix(".webp")
         png_size, webp_size = png.stat().st_size, webp.stat().st_size
         total_png += png_size
         total_webp += webp_size

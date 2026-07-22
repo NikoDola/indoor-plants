@@ -1101,6 +1101,17 @@ html[data-export="pdf"] .closing-page::before {
   background-image: url("assets/cover/plants-window-cover1.png");
 }
 
+/* A "digital" export keeps the lightweight WebP cover/closing artwork instead. */
+html[data-quality="digital"][data-export="pdf"] .cover-page,
+html[data-quality="digital"][data-export="print"] .cover-page {
+  background-image: url("assets/cover/plants-window-cover.webp");
+}
+
+html[data-quality="digital"][data-export="pdf"] .closing-page::before,
+html[data-quality="digital"][data-export="print"] .closing-page::before {
+  background-image: url("assets/cover/plants-window-cover1.webp");
+}
+
 @media print {
   @page {
     size: A4 portrait;
