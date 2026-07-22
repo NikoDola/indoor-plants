@@ -717,10 +717,12 @@ body {
   line-height: 1.2;
 }
 
-@media (max-width: 768px) {
-  /* Mobile: drop the fixed A4 artboard. Every page and card becomes a fluid,
-     auto-height block, and the poster's absolutely-positioned pieces flow in a
-     single readable column (photo -> title -> description -> details). */
+/* Mobile: drop the fixed A4 artboard. Every page and card becomes a fluid,
+   auto-height block, and the poster's absolutely-positioned pieces flow in a
+   single readable column (photo -> title -> description -> details).
+   The 'screen' scope is REQUIRED: without it these rules leak into the printed
+   PDF and stack the two flower cards vertically instead of side by side. */
+@media screen and (max-width: 768px) {
 
   .page {
     padding: 14px;
@@ -1591,8 +1593,6 @@ html[data-quality="digital"][data-export="print"] .closing-page::before {
   html[data-export="print"] .flower-sheet,
   html[data-export="pdf"] .flower-sheet {
     display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
     gap: 8mm;
