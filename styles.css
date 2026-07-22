@@ -1591,6 +1591,8 @@ html[data-quality="digital"][data-export="print"] .closing-page::before {
   html[data-export="print"] .flower-sheet,
   html[data-export="pdf"] .flower-sheet {
     display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
     gap: 8mm;
@@ -1634,7 +1636,7 @@ html[data-quality="digital"][data-export="print"] .closing-page::before {
     width: 68mm;
     margin-top: 6mm;
     padding: 4mm 4.5mm;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 1.5;
   }
 
