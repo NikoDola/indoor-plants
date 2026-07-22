@@ -63,7 +63,9 @@ body {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url("public/assets/cover/plants-window-cover1.png") center / cover no-repeat;
+  background: url("assets/cover/plants-window-cover1.png") center / cover no-repeat;
+  background-image: -webkit-image-set(url("assets/cover/plants-window-cover1.webp") type("image/webp"), url("assets/cover/plants-window-cover1.png") type("image/png"));
+  background-image: image-set(url("assets/cover/plants-window-cover1.webp") type("image/webp"), url("assets/cover/plants-window-cover1.png") type("image/png"));
   pointer-events: none;
 }
 
@@ -328,7 +330,7 @@ body {
   z-index: 1;
   width: 560px;
   height: 560px;
-  background: url("public/assets/background/flower-01.svg") center / contain no-repeat;
+  background: url("assets/background/flower-01.svg") center / contain no-repeat;
   opacity: 0.11;
   pointer-events: none;
 }
@@ -1086,11 +1088,17 @@ html[data-export="pdf"] .book-page {
 }
 
 html[data-export="pdf"] .cover-page {
-  background: url("public/assets/cover/plants-window-cover.png") center / cover no-repeat #ffffff;
+  background: url("assets/cover/plants-window-cover.png") center / cover no-repeat #ffffff;
 }
 
 html[data-export="pdf"] .cover-photo {
   display: none;
+}
+
+/* Force the print-quality PNG for the closing-page background when exporting. */
+html[data-export="print"] .closing-page::before,
+html[data-export="pdf"] .closing-page::before {
+  background-image: url("assets/cover/plants-window-cover1.png");
 }
 
 @media print {
@@ -1363,7 +1371,7 @@ html[data-export="pdf"] .cover-photo {
 
   html[data-export="print"] .cover-page,
   html[data-export="pdf"] .cover-page {
-    background: url("public/assets/cover/plants-window-cover.png") center / cover no-repeat #ffffff;
+    background: url("assets/cover/plants-window-cover.png") center / cover no-repeat #ffffff;
   }
 
   html[data-export="print"] .cover-photo,
