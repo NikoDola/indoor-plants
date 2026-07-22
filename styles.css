@@ -717,72 +717,175 @@ body {
   line-height: 1.2;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 768px) {
+  /* Mobile: drop the fixed A4 artboard. Every page and card becomes a fluid,
+     auto-height block, and the poster's absolutely-positioned pieces flow in a
+     single readable column (photo -> title -> description -> details). */
+
   .page {
     padding: 14px;
-    overflow-x: auto;
+    gap: 16px;
+    overflow-x: hidden;
+  }
+
+  .book-page {
+    width: 100%;
+    aspect-ratio: auto;
+    min-height: 0;
   }
 
   .cover-page,
   .closing-page {
-    --sponsor-band-height: 64px;
-  }
-
-  .book-page {
-    width: var(--card-width);
-    aspect-ratio: auto;
-    min-height: var(--card-height);
+    --sponsor-band-height: 60px;
   }
 
   .flower-sheet {
     flex-direction: column;
-    gap: 14px;
+    align-items: stretch;
+    gap: 16px;
     padding: 14px;
   }
 
   .sponsor-strip {
     top: 14px;
-    left: 26px;
-    right: 26px;
-    width: calc(100% - 52px);
-    height: 36px;
+    left: 22px;
+    right: 22px;
+    bottom: auto;
+    width: calc(100% - 44px);
+    height: 34px;
   }
 
-  .cover-page__content,
-  .intro-page__content,
-  .closing-page__content {
-    padding: 72px 26px 30px;
+  /* -------- Cover -------- */
+  .cover-page {
+    min-height: min(72vh, 600px);
   }
 
   .cover-page__content {
-    min-height: var(--card-height);
+    min-height: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    gap: 18px;
+    gap: 16px;
+    padding: 78px 22px 30px;
     text-align: left;
   }
 
   .cover-page h1 {
-    font-size: 36px;
+    max-width: none;
+    font-size: 29px;
+    line-height: 1.3;
   }
 
-  .intro-page h1,
-  .closing-page h1 {
-    font-size: 23px;
-  }
-
-  .intro-page h1 {
-    font-size: 21px;
-  }
-
-  .intro-page p:not(.eyebrow) {
+  .cover-page h1 span {
     font-size: 17px;
   }
 
+  .cover-ornament {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  /* -------- Intro -------- */
+  .intro-page__content,
+  .closing-page__content {
+    padding: 26px 20px 30px;
+  }
+
+  .intro-copy {
+    width: 100%;
+  }
+
+  .intro-page h1 {
+    font-size: 22px;
+  }
+
+  .intro-page p:not(.eyebrow) {
+    font-size: 16px;
+  }
+
+  /* -------- Plant cards: flow instead of absolute poster layout -------- */
+  .plant-card,
+  .plant-card--compact {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 20px 18px 22px;
+  }
+
+  .plant-card__header,
+  .plant-card .description,
+  .plant-photo,
+  .purifies,
+  .specs {
+    position: static;
+    inset: auto;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    left: auto;
+    width: auto;
+    max-width: none;
+    margin: 0;
+  }
+
+  /* The WebP <picture> wrappers would otherwise be the flex items; let their
+     <img> children flow (and be centerable) directly. */
+  .plant-card picture {
+    display: contents;
+  }
+
+  .plant-watermark {
+    display: none;
+  }
+
+  .plant-photo {
+    align-self: center;
+    width: auto;
+    height: 230px;
+    max-width: 100%;
+  }
+
+  .plant-card h1,
+  .plant-card--compact h1 {
+    max-width: none;
+    font-size: 24px;
+  }
+
+  .description {
+    font-size: 15px;
+  }
+
+  .specs {
+    height: auto;
+    min-height: 0;
+  }
+
+  .spec {
+    padding: 12px 6px;
+  }
+
+  .spec svg {
+    width: 22px;
+    height: 22px;
+    margin-bottom: 4px;
+  }
+
+  .spec strong {
+    font-size: 11px;
+  }
+
+  .spec span {
+    margin-top: 4px;
+    font-size: 10.5px;
+  }
+
+  /* -------- Overview -------- */
   .overview-page__content {
-    padding: 42px 20px 24px;
+    padding: 34px 18px 26px;
   }
 
   .overview-page h1 {
@@ -796,13 +899,13 @@ body {
 
   .overview-table th,
   .overview-table td {
-    padding: 7px 6px;
-    font-size: 10.5px;
-    line-height: 1.18;
+    padding: 8px 7px;
+    font-size: 11px;
+    line-height: 1.2;
   }
 
   .overview-table thead th {
-    font-size: 10.8px;
+    font-size: 11px;
   }
 
   .overview-table thead th:nth-child(1),
@@ -825,60 +928,21 @@ body {
     width: 21%;
   }
 
-  .overview-source {
-    margin-top: 13px;
-    font-size: 11.5px;
-    line-height: 1.38;
-  }
-
-  .cover-page h1 span {
-    font-size: 25px;
-  }
-
-  .cover-ornament {
-    width: 88%;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
-  .cover-grid {
-    flex: 1;
+  /* -------- Closing -------- */
+  .closing-page__content {
     width: 100%;
-    min-height: 250px;
-    max-height: 290px;
-    margin-top: 0;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    align-items: stretch;
+    padding-top: 84px;
+    text-align: left;
   }
 
-  .plant-card {
-    height: 450px;
+  .closing-page h1 {
+    font-size: 22px;
   }
 
-  .plant-photo {
-    top: 0;
-    height: 70%;
-    transform: scaleX(1.15);
-    transform-origin: top right;
-  }
-
-  .purifies {
-    bottom: 80px;
-  }
-
-  .specs {
-    bottom: 8px;
-    height: 72px;
-  }
-
-  .spec svg {
-    width: 19px;
-    height: 19px;
-    margin-bottom: 3px;
-  }
-
-  .spec span {
-    margin-top: 3px;
+  .closing-page p:not(.eyebrow) {
+    max-width: none;
+    font-size: 15px;
   }
 }
 
