@@ -189,6 +189,7 @@ body {
 
 .intro-copy {
   width: min(780px, 100%);
+  margin-left: 2rem;
   padding: 24px 28px 28px;
   border: 1px solid rgba(213, 222, 201, 0.7);
   border-radius: 12px;
@@ -797,6 +798,7 @@ body {
 
   .intro-copy {
     width: 100%;
+    margin-left: 0;
   }
 
   .intro-page h1 {
@@ -1511,6 +1513,7 @@ html[data-quality="digital"][data-export="print"] .closing-page::before {
   html[data-export="print"] .intro-copy,
   html[data-export="pdf"] .intro-copy {
     width: 178mm;
+    margin-left: 2rem;
     padding: 6mm 7mm;
   }
 
@@ -1633,7 +1636,7 @@ html[data-quality="digital"][data-export="print"] .closing-page::before {
 
   html[data-export="print"] .description,
   html[data-export="pdf"] .description {
-    width: 68mm;
+    width: 56mm;
     margin-top: 6mm;
     padding: 4mm 4.5mm;
     font-size: 14px;
